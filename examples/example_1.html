@@ -62,14 +62,12 @@
 
 
 
-      // projection formula
+    
       vec3 xyz( float x , float y, float depth ) {
         float z = depth * ( maxdepth - mindepth ) + mindepth;
         return vec3(
 
-       // The shader as it is written operates on a scale that seems about
-       // 100x larger than units in AFRAME
-       // Scale hack,
+     
               0.01 * ((x - principleX)  * z / focalX) ,
               0.01 * ((y - principleY) * z / focalY),
               0.01 * (-z) );
@@ -83,8 +81,7 @@
         vec3 hsl = rgb2hsl( texture2D( map, vUv ).xyz );
         vec4 pos = vec4( xyz( position.x, position.y, hsl.x ), 5.0 );
 
-        // Positioning the cloud
-        // pos.x -= 07.0; Puts the base of the video in the right spot for rotated DepthKit video
+
         pos.z += 000.0;
         pos.y += 00.0;
         pos.x -= 07.0;
