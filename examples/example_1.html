@@ -21,14 +21,14 @@
         l =  ( cMax + cMin ) / 2.0;
         if ( cMax > cMin ) {
           float cDelta = cMax - cMin;
-          // saturation
+          
           if ( l < 0.5 ) {
             s = cDelta / ( cMax + cMin );
           } else {
             s = cDelta / ( 2.0 - ( cMax + cMin ) );
           }
 
-          // hue
+        
           if ( r == cMax ) {
             h = ( g - b ) / cDelta;
           } else if ( g == cMax ) {
@@ -46,7 +46,7 @@
         return vec3( h, s, l );
       }
 
-      // camera intrinsics from metadata file
+ 
       uniform float mindepth;
       uniform float maxdepth;
       uniform float imageWidth;
