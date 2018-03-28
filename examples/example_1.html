@@ -130,7 +130,9 @@
     <a-scene embedded arjs='trackingMethod: best;'>
 
      <a-anchor hit-testing-enabled='true'>
-
+	
+	    <a-entity cube
+	     
            <a-entity rgbd-video="
             name:video;
             depthFocalLengthX: 365.2185974121094;
@@ -144,6 +146,8 @@
             " position="0 .3 0" scale="1 1 1" rotation="0 0 -90"> 
           </a-entity>
           
+	    <a-entity geometry="primitive: box; width: 1; height: 1; depth: 1"></a-entity>
+	    
       </a-anchor>
      <a-camera-static/>
 	</a-scene>
