@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+   
     <meta charset="utf-8">
-    <title>Volu Vid Aframe Component Demo</title>
-    <meta name="description" content="Volu Vid Aframe Component Demo">
+    <title>Immersive Labs ARJS Test</title>
+    <meta name="description" content="Immersive labs ARJS test">
     
     <!-- MUST include these two shaders. Seems easiest to leave them in the HTML for now -->
-    
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/examples/vendor/aframe/build/aframe.min.js"></script>
-  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/ build/aframe-ar.js"></script>
-
+  
     <script id="vs" type="x-shader/x-vertex">
       vec3 rgb2hsl( vec3 color ) {
         float h = 0.0;
@@ -123,19 +121,17 @@
 
     </script>
     
-    <script src="../dist/volu-vid-component.js"></script>
-
-
+  <script src="../dist/volu-vid-component.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/examples/vendor/aframe/build/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
   </head>
-  <body style="margin : 0px; overflow: hidden;">
+
+  <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs='trackingMethod: best;'>
 
      <a-anchor hit-testing-enabled='true'>
 
-      
-      <a-entity 
-
-      <a-entity rgbd-video="
+           <a-entity rgbd-video="
             name:video;
             depthFocalLengthX: 365.2185974121094;
             depthFocalLengthY: 365.2185974121094;
@@ -145,8 +141,10 @@
             depthPrincipalPointY: 209.3957977294922;
             farClip: 1200;
             nearClip: 0;
-            " position="0 .3 0" scale="1 1 1" rotation="0 0 -90"> </a-entity>
-          </a-anchor>
+            " position="0 .3 0" scale="1 1 1" rotation="0 0 -90"> 
+          </a-entity>
+          
+      </a-anchor>
      <a-camera-static/>
 	</a-scene>
   </body>
