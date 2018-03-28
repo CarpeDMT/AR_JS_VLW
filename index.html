@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+   
     <meta charset="utf-8">
-    <title>Volu Vid Aframe Component Demo</title>
-    <meta name="description" content="Volu Vid Aframe Component Demo">
+    <title>Immersive Labs ARJS Test</title>
+    <meta name="description" content="Immersive labs ARJS test">
     
     <!-- MUST include these two shaders. Seems easiest to leave them in the HTML for now -->
-    
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/examples/vendor/aframe/build/aframe.min.js"></script>
-  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/ build/aframe-ar.js"></script>
-
+  
     <script id="vs" type="x-shader/x-vertex">
       vec3 rgb2hsl( vec3 color ) {
         float h = 0.0;
@@ -29,6 +27,7 @@
           } else {
             s = cDelta / ( 2.0 - ( cMax + cMin ) );
           }
+
           // hue
           if ( r == cMax ) {
             h = ( g - b ) / cDelta;
@@ -37,13 +36,16 @@
           } else {
             h = 4.0 + ( r - g ) / cDelta;
           }
+
           if ( h < 0.0) {
             h += 6.0;
           }
           h = h / 6.0;
+
         }
         return vec3( h, s, l );
       }
+
       // camera intrinsics from metadata file
       uniform float mindepth;
       uniform float maxdepth;
@@ -53,13 +55,18 @@
       uniform float focalY;
       uniform float principleX;
       uniform float principleY;
+
       uniform sampler2D map;
       varying float visibility;
       varying vec2 vUv;
+
+
+
       // projection formula
       vec3 xyz( float x , float y, float depth ) {
         float z = depth * ( maxdepth - mindepth ) + mindepth;
         return vec3(
+
        // The shader as it is written operates on a scale that seems about
        // 100x larger than units in AFRAME
        // Scale hack,
@@ -67,48 +74,64 @@
               0.01 * ((y - principleY) * z / focalY),
               0.01 * (-z) );
       }
+
       void main() {
+
         vUv = vec2 (position.x/imageWidth, position.y/imageHeight);
         vUv.y = vUv.y * 0.5;// + 0.5;
+
         vec3 hsl = rgb2hsl( texture2D( map, vUv ).xyz );
         vec4 pos = vec4( xyz( position.x, position.y, hsl.x ), 5.0 );
+
         // Positioning the cloud
         // pos.x -= 07.0; Puts the base of the video in the right spot for rotated DepthKit video
         pos.z += 000.0;
         pos.y += 00.0;
         pos.x -= 07.0;
+
         visibility = hsl.z * 2.0;
+
         gl_PointSize = 2.0;
+
+
         gl_Position = projectionMatrix * modelViewMatrix * pos;
+
       }
+
     </script>
 
     <script id="fs" type="x-shader/x-fragment">
+
       uniform sampler2D map;
       uniform float opacity;
+
       varying float visibility;
       varying vec2 vUv;
+
       void main() {
+
         if ( visibility < 0.75 ) discard;
+
         vec4 color = texture2D( map, vUv + vec2(0.0, 0.5) );
         color.w = opacity;
+
         gl_FragColor = color;
+
       }
+
     </script>
     
-    <script src="../dist/volu-vid-component.js"></script>
-
-
+  <script src="../dist/volu-vid-component.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/examples/vendor/aframe/build/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
   </head>
-  <body style="margin : 0px; overflow: hidden;">
+
+  <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs='trackingMethod: best;'>
 
      <a-anchor hit-testing-enabled='true'>
 
-      
-      <a-entity 
-
-      <a-entity rgbd-video="
+           <a-entity rgbd-video="
             name:video;
             depthFocalLengthX: 365.2185974121094;
             depthFocalLengthY: 365.2185974121094;
@@ -118,8 +141,10 @@
             depthPrincipalPointY: 209.3957977294922;
             farClip: 1200;
             nearClip: 0;
-            " position="0 .3 0" scale="1 1 1" rotation="0 0 -90"> </a-entity>
-          </a-anchor>
+            " position="0 .3 0" scale="1 1 1" rotation="0 0 -90"> 
+          </a-entity>
+          
+      </a-anchor>
      <a-camera-static/>
 	</a-scene>
   </body>
