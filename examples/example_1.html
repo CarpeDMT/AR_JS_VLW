@@ -100,9 +100,9 @@
   </head>
   <body>
 	  
-	<a-scene embedded arjs='trackingMethod: tango;'>
+	<a-scene embedded arjs='trackingMethod: best;'>
 	<a-anchor hit-testing-enabled='true'>
-
+<a-camera-static>
       <a-entity rgbd-video="
             name:video;
             depthFocalLengthX: 365.6989135742188;
@@ -116,7 +116,7 @@
             " position="0 0 0" scale="1 1 1" rotation="0 0 0"> </a-entity>
 		
 		</a-anchor>
-		
+		<a-camera-static/>
 	</a-scene>
      </body>
 </html>
