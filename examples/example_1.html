@@ -102,7 +102,7 @@
 	  
 	<a-scene embedded arjs='trackingMethod: best;'>
 	<a-anchor hit-testing-enabled='true'>
-<a-camera-static>
+	<a-marker-camera preset='hiro'>
       <a-entity rgbd-video="
             name:video;
             depthFocalLengthX: 365.6989135742188;
@@ -116,7 +116,7 @@
             " position="0 0 0" scale="1 1 1" rotation="0 0 0"> </a-entity>
 		
 		</a-anchor>
-		<a-camera-static/>
+	</a-marker-camera>
 	</a-scene>
      </body>
 </html>
