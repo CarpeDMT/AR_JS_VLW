@@ -7,7 +7,7 @@
     
     <!-- MUST include these two shaders. Seems easiest to leave them in the HTML for now -->
     
-    <script id="vs" type="x-shader/x-vertex">
+     <script id="vs" type="x-shader/x-vertex">
       vec3 rgb2hsl( vec3 color ) {
         float h = 0.0;
         float s = 0.0;
@@ -91,7 +91,7 @@
         color.w = opacity;
         gl_FragColor = color;
       }
-    </script>
+    </script> 
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="../dist/volu-vid-component.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script> 
@@ -105,15 +105,16 @@
 
       <a-entity rgbd-video="
             name:video;
-            depthFocalLengthX: 365.2185974121094;
-            depthFocalLengthY: 365.2185974121094;
+            depthFocalLengthX: 365.6989135742188;
+            depthFocalLengthY: 365.6989135742188;
             depthImageSizeX: 512;
             depthImageSizeY: 424;
-            depthPrincipalPointX: 257.6430969238281;
-            depthPrincipalPointY: 209.3957977294922;
-            farClip: 1200;
+            depthPrincipalPointX: 257.369384765625;
+            depthPrincipalPointY: 100;
+            farClip: 5;
+	    format: perpixel;
             nearClip: 0;
-            " position="0 1 0" scale="1 1 1" rotation="0 0 0"> </a-entity>
+            " position="0 0 0" scale="1 1 1" rotation="0 0 0"> </a-entity>
 		
 		</a-anchor>
 		
